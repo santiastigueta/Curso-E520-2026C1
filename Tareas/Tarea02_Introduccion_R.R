@@ -33,16 +33,16 @@ es_pea <- (estado == 'ocupado' | estado == 'desocupado') & edad_anios >= 18
 print(es_pea)
 
 
-# Estrucruea basica de if
-if (salario_mensual > 800000) {
+# Estructura basica de if
+salario <- 500000
+if (salario > 800000) {
   decil <- 'Alto'
-} else if (salario_mensual >= 1000) {
+} else if (salario >= 1000) {
   decil <- 'Medio'
-}
- else {
+} else {
   decil <- 'Bajo'
 }
-print(decil)
+print(decil) # Antes me daba error porque el else estaba mal ubicado. ya corregido, otra vez actualizo el archivo. 
 
 # Flujos de prueba
 meses_busqueda <- 0
