@@ -28,7 +28,7 @@ estaciones_clean <- nuevas_estaciones_bicis_publicas %>%
 
 colnames(estaciones_clean)
 
-#2. Limpiar y preparar Comercios (Extraemos Lat/Lng del campo WKT)
+# Limpiar y preparar Comercios (Extraemos Lat/Lng del campo WKT)
 comercios_clean <- comercios_con_beneficios_ciclistas %>%
   mutate(
     # POINT (-58.37 -34.65) -> extraemos los números
@@ -46,7 +46,7 @@ conteo_comercios_comuna <- comercios_clean %>%
   group_by(comuna) %>%
   summarise(total_comercios = n())
 
-# 3. Preparar Volúmenes y unir con Geografía
+# Preparar Volúmenes y unir con Geografía
 # Primero promediamos el flujo mensual por punto
 volumen_promedio <- volumen_ciclistas_mensuales %>%
   group_by(punto_referencia) %>%
@@ -64,13 +64,12 @@ data_analisis <- censos_geo_volumen %>%
     PB == "PB45" ~ "15",
     PB == "PB46" ~ "14",
     PB == "PB10" ~ "2",
-    # Agrega más mapeos según necesites
     TRUE ~ NA_character_
   )) %>%
   filter(!is.na(comuna)) %>%
   inner_join(conteo_comercios_comuna, by = "comuna")
 
-# 5. MAPA INTERACTIVO 
+#  MAPA INTERACTIVO 
 mapa <- leaflet() %>%
   addTiles() %>%
   # Capa de Puntos de Censo (Círculos azules proporcionales al flujo)
